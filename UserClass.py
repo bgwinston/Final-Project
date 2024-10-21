@@ -25,7 +25,7 @@ class User:
             return f"Error creating account: {err}"
 
     # Method to log in a user
-    def login(self, cursor):
+    def login(self, cnx, cursor):
         try:
             # Query to check if the username and password match
             query = "SELECT * FROM users WHERE username = %s AND password = %s"
