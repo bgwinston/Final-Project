@@ -233,15 +233,6 @@ def show_employees():
         # Check if the current time falls within the employee's available hours
         is_available = available_start_time <= current_time <= available_end_time
 
-        employee_list.append({
-            "employee_id": employee_id,
-            "name": name,
-            "role": role,
-            "contact_info": contact_info,
-            "available_start": available_start_time,
-            "available_end": available_end_time,
-            "is_available": is_available
-        })
 
     # Create an order detail example for notification
     order_details = {
