@@ -1,13 +1,13 @@
 from datetime import datetime, timedelta
 from flask import Flask, render_template, request, redirect, session
-import mysql.connector
 from OrderEstimationClass import OrderEstimation
 from UserClass import User
 from dbConnection import cnx, cursor
 from employeeclass import Employee
 from Notifyclass import Notify
 from adminClass import Admin
-import CustomersOrdersClass 
+from CustomersOrdersClass  import CustomerOrder
+
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Required for sessions

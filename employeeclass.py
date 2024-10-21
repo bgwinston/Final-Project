@@ -3,12 +3,12 @@ import mysql.connector
 from datetime import datetime
 
 class Employee:
-    def __init__(self, employee_id=None, name=None, role=None, contact_info=None, is_available=True, available_start=None, available_end=None):
+    def __init__(self, employee_id=None, name=None, role=None, contact_info=None, is_available=False, available_start=None, available_end=None):
         self.employee_id = employee_id
         self.name = name
         self.role = role
         self.contact_info= contact_info
-        self.is_available = False 
+        self.is_available = False #Default is False 
         self.available_start = available_start
         self.available_end = available_end
 
@@ -49,7 +49,8 @@ class Employee:
             self.is_available = True
         else:
             self.is_available = False
-  # This method is responsible for notifying the employee about a new order
+
+  # This method is responsible for notifying the employee about a new order -output to console
     def notify_new_order(self, order_id, order_details):
         # Logic to notify the employee of a new order
         print(f"Notification for Employee {self.name} ({self.role}):")
@@ -59,9 +60,8 @@ class Employee:
         print(f"Sides: {order_details['side_item1']}, {order_details['side_item2']}")
         print(f"Drink: {order_details['drink']}")
         print(f"Total Price: {order_details['total_price']}")
-        # You could send this via email, SMS, or just log it for testing purposes
-        # You can also add logic here to send actual notifications, emails, etc.
+
      # Method to assign an order to the employee
     def assign_order(self, order_id):
         print(f"Order ID {order_id} has been assigned to Employee {self.name} (ID: {self.employee_id})")
-        # You can add logic here to update the database and mark the order as assigned to the employee
+        #
