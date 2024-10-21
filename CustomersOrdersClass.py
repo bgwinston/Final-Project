@@ -47,7 +47,7 @@ class CustomerOrder:
                 self.drink,
                 self.total_price
             ))
-            cnx.commit()  # Commit the transaction
+            cnx.commit()  
             print("Order placed successfully!")
         except mysql.connector.Error as err:
             print(f"Error placing order: {err}")
