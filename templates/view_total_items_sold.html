@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Items Sold</title>
+</head>
+<body>
+    <h1>Total Items Sold by Category</h1>
+
+    <form method="POST">
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required><br><br>
+
+        <label for="month">Month (1-12):</label>
+        <input type="number" id="month" name="month" required><br><br>
+
+        <button type="submit">View Total Items Sold</button>
+    </form>
+
+    {% if items_sold %}
+        <h2>Total Items Sold in the Selected Month</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Item</th>
+                    <th>Quantity Sold</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items_sold %}
+                    <tr>
+                        <td>{{ item[0] }}</td> <!-- Category (Pizza Size, Pizza Type, etc.) -->
+                        <td>{{ item[1] }}</td> <!-- Item (Large, Margherita, Soda, etc.) -->
+                        <td>{{ item[2] }}</td> <!-- Quantity Sold -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>

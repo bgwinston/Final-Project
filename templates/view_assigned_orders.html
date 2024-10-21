@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigned and Unassigned Orders</title>
+</head>
+<body>
+    <h1>Assigned Orders</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Pizza Type</th>
+                <th>Pizza Size</th>
+                <th>Side 1</th>
+                <th>Side 2</th>
+                <th>Drink</th>
+                <th>Total Price</th>
+                <th>Employee Name</th>
+                <th>Order Date and Time</th> <!-- New column for order date -->
+            </tr>
+        </thead>
+        <tbody>
+            {% if assigned_orders %}
+                {% for order in assigned_orders %}
+                    <tr>
+                        <td>{{ order[0] }}</td> <!-- Order ID -->
+                        <td>{{ order[1] }}</td> <!-- Pizza Type -->
+                        <td>{{ order[2] }}</td> <!-- Pizza Size -->
+                        <td>{{ order[3] }}</td> <!-- Side 1 -->
+                        <td>{{ order[4] }}</td> <!-- Side 2 -->
+                        <td>{{ order[5] }}</td> <!-- Drink -->
+                        <td>{{ order[6] }}</td> <!-- Total Price -->
+                        <td>{{ order[7] }}</td> <!-- Employee Name -->
+                        <td>{{ order[8] }}</td> <!-- Order Date -->
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="8">No assigned orders found.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <h1>Unassigned Orders</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Pizza Type</th>
+                <th>Pizza Size</th>
+                <th>Side 1</th>
+                <th>Side 2</th>
+                <th>Drink</th>
+                <th>Total Price</th>
+                <th>Order Date and Time</th> <!-- New column for order date -->
+
+            </tr>
+        </thead>
+        <tbody>
+            {% if unassigned_orders %}
+                {% for order in unassigned_orders %}
+                    <tr>
+                        <td>{{ order[0] }}</td> <!-- Order ID -->
+                        <td>{{ order[1] }}</td> <!-- Pizza Type -->
+                        <td>{{ order[2] }}</td> <!-- Pizza Size -->
+                        <td>{{ order[3] }}</td> <!-- Side 1 -->
+                        <td>{{ order[4] }}</td> <!-- Side 2 -->
+                        <td>{{ order[5] }}</td> <!-- Drink -->
+                        <td>{{ order[6] }}</td> <!-- Total Price -->
+                        <td>{{ order[7] }}</td> <!-- Order Date -->
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="7">No unassigned orders found.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

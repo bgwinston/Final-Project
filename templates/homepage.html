@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizza Ordering System</title>
+</head>
+<body>
+    <header>
+        <h1>Pizza Ordering System</h1>
+    </header>
+    <main>
+        <!-- Display any messages (e.g., success or error) -->
+        {% if message %}
+            <p style="color: red;">{{ message }}</p>
+        {% endif %}
+        
+        <!-- Login form -->
+        <section id="login">
+            <h2>Login</h2>
+            <form action="/" method="POST">
+                <input type="hidden" name="login">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+
+        <!-- Account creation form -->
+        <section id="create-account">
+            <h2>Create Account</h2>
+            <form action="/" method="POST">
+                <input type="hidden" name="create_account">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+                <button type="submit">Create Account</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Pizza Ordering System</p>
+    </footer>
+</body>
+</html>

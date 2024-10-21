@@ -1,0 +1,103 @@
+<form action="/order" method="POST" oninput="updateTotalPrice()">
+    <h2>Choose Your Pizza</h2>
+    <label for="pizza_type">Pizza Type:</label>
+    <select name="pizza_type_label" id="pizza_type_label" required>
+        <option value="" disabled selected>-- Select Pizza Type --</option> <!-- Placeholder -->
+        <option value="Pepperoni" {% if pizza_type == 'Pepperoni' %}selected{% endif %}>Pepperoni - $12.99</option>
+        <option value="Margherita" {% if pizza_type == 'Margherita' %}selected{% endif %}>Margherita - $10.99</option>
+        <option value="BBQ Chicken" {% if pizza_type == 'BBQ Chicken' %}selected{% endif %}>BBQ Chicken - $13.99</option>
+    </select><br><br>
+    
+    <label for="pizza_size">Pizza Size:</label>
+    <select name="pizza_size_label" id="pizza_size_label" required>
+        <option value="" disabled selected>-- Select Pizza Size --</option> <!-- Placeholder -->
+        <option value="Small" {% if pizza_size == 'Small' %}selected{% endif %}>Small - $8.99</option>
+        <option value="Medium" {% if pizza_size == 'Medium' %}selected{% endif %}>Medium - $10.99</option>
+        <option value="Large" {% if pizza_size == 'Large' %}selected{% endif %}>Large - $12.99</option>
+    </select><br><br>
+
+    <h2>Choose Your Sides</h2>
+    <label for="side_item1">Side Item 1:</label>
+    <select name="side_item1_label" id="side_item1_label">
+        <option value="None" {% if side_item1 == 'None' %}selected{% endif %}>None</option>
+        <option value="Salad" {% if side_item1 == 'Salad' %}selected{% endif %}>Salad - $4.99</option>
+        <option value="Breadsticks" {% if side_item1 == 'Breadsticks' %}selected{% endif %}>Breadsticks - $5.99</option>
+    </select><br><br>
+    
+    <label for="side_item2">Side Item 2:</label>
+    <select name="side_item2_label" id="side_item2_label">
+        <option value="None" {% if side_item2 == 'None' %}selected{% endif %}>None</option>
+        <option value="Wings" {% if side_item2 == 'Wings' %}selected{% endif %}>Wings - $8.99</option>
+        <option value="Garlic Bread" {% if side_item2 == 'Garlic Bread' %}selected{% endif %}>Garlic Bread - $3.99</option>
+    </select><br><br>
+
+    <h2>Choose Your Drink</h2>
+    <label for="drink">Drink:</label>
+    <select name="drink_label" id="drink_label">
+        <option value="None" {% if drink == 'None' %}selected{% endif %}>None</option>
+        <option value="Soda" {% if drink == 'Soda' %}selected{% endif %}>Soda - $1.99</option>
+        <option value="Water" {% if drink == 'Water' %}selected{% endif %}>Water - $1.49</option>
+    </select><br><br>
+
+    <!-- Total Price -->
+    <h2>Total Price: <span id="total_price">${{ total_price }}</span></h2>
+    <input type="hidden" name="total_price" id="total_price_input" value="{{total_price }}">
+    
+    <button type="submit">Place Order</button>
+</form>
+
+<script>
+function updateTotalPrice() {
+    let pizzaType = document.getElementById("pizza_type_label").value;
+    let pizzaSize = document.getElementById("pizza_size_label").value;
+    let sideItem1 = document.getElementById("side_item1_label").value;
+    let sideItem2 = document.getElementById("side_item2_label").value;
+    let drink = document.getElementById("drink_label").value;
+
+    let totalPrice = 0;
+
+    // Pizza type prices
+    if (pizzaType === "Pepperoni") {
+        totalPrice += 12.99;
+    } else if (pizzaType === "Margherita") {
+        totalPrice += 10.99;
+    } else if (pizzaType === "BBQ Chicken") {
+        totalPrice += 13.99;
+    }
+
+    // Pizza size prices
+    if (pizzaSize === "Small") {
+        totalPrice += 8.99;
+    } else if (pizzaSize === "Medium") {
+        totalPrice += 10.99;
+    } else if (pizzaSize === "Large") {
+        totalPrice += 12.99;
+    }
+
+    // Side item 1 prices
+    if (sideItem1 === "Salad") {
+        totalPrice += 4.99;
+    } else if (sideItem1 === "Breadsticks") {
+        totalPrice += 5.99;
+    }
+
+    // Side item 2 prices
+    if (sideItem2 === "Wings") {
+        totalPrice += 8.99;
+    } else if (sideItem2 === "Garlic Bread") {
+        totalPrice += 3.99;
+    }
+
+    // Drink prices
+    if (drink === "Soda") {
+        totalPrice += 1.99;
+    } else if (drink === "Water") {
+        totalPrice += 1.49;
+    }
+
+    // Update total price display
+    
+    document.getElementById("total_price").innerText = "$" + totalPrice.toFixed(2);
+    document.getElementById("total_price_input").value = totalPrice.toFixed(2);
+}
+</script>

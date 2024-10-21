@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees</title>
+</head>
+<body>
+    
+    <h1>Employee Availability</h1>
+    <a href="/add_employee">
+        <button type="button">Add New Employee</button>
+    </a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Contact Info</th>
+                <th>Available From</th>
+                <th>Available To</th>
+                <th>Currently Available</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if employees %}
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{ employee.employee_id }}</td>
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.role }}</td>
+                        <td>{{ employee.contact_info }}</td>
+                        <td>{{ employee.available_start }}</td>
+                        <td>{{ employee.available_end }}</td>
+                        <td>{{ "Yes" if employee.is_available else "No" }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6">No employees available.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+</body>
+</html>

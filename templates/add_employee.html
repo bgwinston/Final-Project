@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+</head>
+<body>
+    <h1>Add a New Employee</h1>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    <form action="/add_employee" method="POST">
+        <label for="name">Employee Name:</label>
+        <input type="text" name="name" id="name" required><br><br>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+            <option value="" disabled selected>-- Select Role --</option> <!-- Placeholder -->
+            <option value="Delivery Driver">Delivery Driver</option>
+            <option value="Baker">Baker</option>
+            <option value="Cashier">Cashier</option>
+            <option value="Pizza Maker">Pizza Maker</option>
+        </select><br><br>
+        <label for="contact_info">Phone Number:</label>
+        <input type="text" name="contact_info" id="contact_info" required><br><br>
+
+        <label for="available_start">Available Start Time:</label>
+        <input type="time" name="available_start" id="available_start" required><br><br>
+
+        <label for="available_end">Available End Time:</label>
+        <input type="time" name="available_end" id="available_end" required><br><br>
+
+        <button type="submit">Add Employee</button>
+    </form>
+    <a href="/employees">Back to Employee List</a>
+
+</body>
+</html>

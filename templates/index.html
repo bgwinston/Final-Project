@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Previous Orders</title>
+</head>
+<body>
+    <h1>Your Previous Orders</h1>
+
+    <a href="/order">
+        <button type="button">Place a New Order</button>
+    </a>
+    <!-- Check if there are any previous orders -->
+    {% if orders %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Pizza Type</th>
+                    <th>Pizza Size</th>
+                    <th>Side 1</th>
+                    <th>Side 2</th>
+                    <th>Drink</th>
+                    <th>Total Price</th>
+                    <th>Order Date</th>
+                    <th>Reorder</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through the orders and display each one -->
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order[0] }}</td> <!-- Order ID -->
+                        <td>{{ order[1] }}</td> <!-- Pizza Type -->
+                        <td>{{ order[2] }}</td> <!-- Pizza Size -->
+                        <td>{{ order[3] }}</td> <!-- Side Item 1 -->
+                        <td>{{ order[4] }}</td><!-- Side Item 2 -->
+                        <td>{{ order[5] }}</td> <!-- Drink -->
+                        <td>${{ order[6] }}</td> <!-- Total Price -->
+                        <td>{{ order[7] }}</td> <!-- Order Date -->
+                        <td>
+                            <!-- Reorder button that links to the reorder route -->
+                            <a href="/reorder/{{ order[0] }}">Reorder</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have no previous orders.</p>
+    {% endif %}
+</body>
+</html>
