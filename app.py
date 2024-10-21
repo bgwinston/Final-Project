@@ -98,11 +98,12 @@ def order_page():
         # Get the order_id of the last inserted order
         order_id = cursor.lastrowid
 
-        # Fetch an available employee
+    # Fetch an available employee who does not have an assigned order
         query_employee = """
-        SELECT employee_id, name, role 
-        FROM employees 
-        WHERE is_available = TRUE
+        SELECT e.employee_id, e.name, e.role 
+        FROM employees e
+        LEFT JOIN orders o ON e.employee_id = o.employee_id AND o.order_date >= CURDATE()  -- Check if they have an order today
+        WHERE e.is_available = TRUE AND o.employee_id IS NULL  -- Only select employees with no order today
         LIMIT 1
         """
         cursor.execute(query_employee)
@@ -135,13 +136,14 @@ def order_page():
         else:
             print("No available employees found")
 
+
         # Render the confirmation page
         return render_template("confirmation.html", pizza_type=pizza_type_label, pizza_size=pizza_size_label,
-                               side_item1=side_item1_label, side_item2=side_item2_label, drink=drink_label,
-                               total_price=total_price, order_date=order_date.strftime("%Y-%m-%d %H:%M:%S"),
-                               estimated_time=estimated_time.strftime("%Y-%m-%d %H:%M:%S"),
-                               estimated_time_minutes=estimated_time_minutes)
-    
+                                side_item1=side_item1_label, side_item2=side_item2_label, drink=drink_label,
+                                total_price=total_price, order_date=order_date.strftime("%Y-%m-%d %H:%M:%S"),
+                                estimated_time=estimated_time.strftime("%Y-%m-%d %H:%M:%S"),
+                                estimated_time_minutes=estimated_time_minutes)
+        
     return render_template("order.html", user_id=session['id'])
 
 
@@ -234,6 +236,8 @@ def show_employees():
         is_available = available_start_time <= current_time <= available_end_time
 
 
+
+        # Add employee info to list
         employee_list.append({
             "employee_id": employee_id,
             "name": name,
