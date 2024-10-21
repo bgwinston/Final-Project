@@ -234,16 +234,15 @@ def show_employees():
         is_available = available_start_time <= current_time <= available_end_time
 
 
-    # Create an order detail example for notification
-    order_details = {
-        "pizza_type": "Pepperoni",
-        "pizza_size": "Large",
-        "total_price": 19.99
-    }
-
-    # Instantiate the Notify class and notify available employees
-    notifier = Notify(employee_list)
-    notifier.notify_available_employees(order_details)
+        employee_list.append({
+            "employee_id": employee_id,
+            "name": name,
+            "role": role,
+            "contact_info": contact_info,
+            "available_start": available_start_time,
+            "available_end": available_end_time,
+            "is_available": is_available
+        })
 
     # Render the employee list template
     return render_template("employee_list.html", employees=employee_list)
